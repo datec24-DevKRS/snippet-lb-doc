@@ -2,10 +2,10 @@ name: Deploy MkDocs
 on:
   push:
     branches:
-      - master  # Changed from main to master
+      - master
   pull_request:
     branches:
-      - master  # Changed from main to master
+      - master
 
 permissions:
   contents: write
@@ -14,23 +14,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - uses: actions/setup-python@v5
         with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v4
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - uses: actions/cache@v4
         with:
-          python-version: '3.x'
-          cache: pip
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
       - name: Install dependencies
         run: |
           pip install mkdocs-material
           pip install mkdocs-glightbox
           pip install mkdocs-git-revision-date-localized-plugin
-      - name: Deploy
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          mkdocs gh-deploy --force --remote-branch gh-pages
+      - run: mkdocs gh-deploy --force
 
 concurrency:
   group: pages
