@@ -1,4 +1,5 @@
 site_name: SnippetLibrary
+site_url: https://datec24-DevKRS.github.io/snippet-lb-doc
 
 nav:
   - Home: index.md
