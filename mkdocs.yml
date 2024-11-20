@@ -60,8 +60,8 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
-repo_name: username/repository
-repo_url: https://github.com/username/repository
+repo_name: datec24-DevKRS/snippet-lb-doc
+repo_url: https://github.com/datec24-DevKRS/snippet-lb-doc
 
 extra_css:
   - stylesheets/extra.css
