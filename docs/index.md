@@ -6,7 +6,7 @@ SnippetLibrary ist eine Webanwendung zur Verwaltung von Code-Snippets. Die Anwen
 - Backend: FastAPI
 - Datenbank: MySQL
 - Authentication: Azure SSO
-- Hosting: Firebase
+- Hosting: Firebase ooohhhhh
 
 ## Hauptfunktionen
 
